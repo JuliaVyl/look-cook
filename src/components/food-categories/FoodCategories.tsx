@@ -2,7 +2,7 @@ import './categories.scss'
 
 import { food } from './food_data'; 
 
-const Categories = () => {
+const FoodCategories = () => {
   return (
 
     <div className="categories">
@@ -24,4 +24,4 @@ const Categories = () => {
   );
 }
 
-export default Categories;
+export default FoodCategories;

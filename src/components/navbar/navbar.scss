@@ -23,6 +23,27 @@
   &__list {
     display: flex;
   }
+  &__search-field, &__search-btn {
+    border: 1px solid $categoty;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: $categoty;
+    height: 30px;
+  }
+  &__search-field {
+    width: 400px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    border-right: none;
+  } 
+  &__search-btn {
+    background: #fff;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
   &__item {
       
     &-search {
