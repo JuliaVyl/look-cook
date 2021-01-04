@@ -1,16 +1,21 @@
 @import '../../assets/colors';
 
-.edit-form {
+.add-form {
   position: absolute;
   left: 50%;
+  top: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  top: 40%;
   box-shadow: 0px 8px 33px -5px rgba(34, 60, 80, 0.2);
-  width: 20%;
+  width: 60%;
   padding: 40px 50px;
+  &__inputs {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 50px;
+  }
 
-  &__name {
+  &__title, &__serves, &__time, &__level, &__desc {
     width: 100%;
     border-radius: 5px;
     padding-left: 10px;
@@ -23,9 +28,12 @@
     height: 30px;
     margin-bottom: 20px;
   }
-  &__photo {
-    margin-bottom: 20px;
+
+  &__desc {
+    height: 88%;
+    resize : none;
   }
+
   &__btn {
     border: none;
     font-family: Montserrat;
@@ -40,10 +48,6 @@
 
     &:hover, &:focus {
       background: #dadada;
-    }
-
-    &_save {
-      margin-bottom: 20px;
     }
   }
 }
