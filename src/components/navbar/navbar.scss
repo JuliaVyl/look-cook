@@ -49,6 +49,9 @@
       &_active {
         font-weight: bold;
       }
+      &:hover {
+        opacity: .6;
+      }
     }
   } 
 }
