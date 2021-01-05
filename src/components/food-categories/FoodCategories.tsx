@@ -1,16 +1,13 @@
-import './categories.scss'
+import './categories.scss';
 
-import { food } from './food_data'; 
+import { food } from './food_data';
 
-const FoodCategories = () => {
+const FoodCategories: React.FC<{}> = () => {
   return (
-
     <div className="categories">
       <ul className="categories__list">
-        { food.map(category => {
-          return (
-            <li className="categories__item">{category.category}</li>
-          )
+        {food.map((category) => {
+          return <li className="categories__item">{category.category}</li>;
         })}
       </ul>
     </div>
@@ -22,6 +19,6 @@ const FoodCategories = () => {
     //   </ul>
     // </div>
   );
-}
+};
 
 export default FoodCategories;

@@ -2,7 +2,7 @@ import './signup.scss';
 
 import closeIcon from '../../assets/icons/close.svg';
 
-const Signup = () => {
+const Signup: React.FC<{}> = () => {
   return (
     <form className="signup">
       <div className="signup__close"><img src={closeIcon} alt="close"/></div>
