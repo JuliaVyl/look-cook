@@ -9,7 +9,10 @@
   width: 438px;
 
   &__list {
-    
+  }
+  &__link {
+    text-decoration: none;
+    color: $categoty;
   }
 
   &__item {
@@ -36,7 +39,7 @@
     }
 
     &:hover {
-      transform: scale(1.05)
+      transform: scale(1.05);
     }
   }
 }

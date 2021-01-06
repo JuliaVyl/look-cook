@@ -1,5 +1,4 @@
 export interface User {
-  id: string;
   name: string;
   email: string;
   photoUrl: string;
@@ -7,29 +6,13 @@ export interface User {
 
 export interface UserState {
   user: User | null;
-  loading: boolean;
-  error: any;
 }
 
-export const FETCH_USER_REQUEST = 'FETCH_USER_REQUEST';
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const LOAD_USER = 'LOAD_USER';
 
-export interface RequestUserAction {
-  type: typeof FETCH_USER_REQUEST;
-}
-
-export interface LoadedUserAction {
-  type: typeof FETCH_USER_SUCCESS;
-  payload: User;
-}
-
-export interface ErrorUserAction {
-  type: typeof FETCH_USER_FAILURE;
+export interface LoadUserAction {
+  type: typeof LOAD_USER;
   payload: any;
 }
 
-export type UserActionTypes =
-  | RequestUserAction
-  | LoadedUserAction
-  | ErrorUserAction;
+export type UserActionTypes = LoadUserAction;

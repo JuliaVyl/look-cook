@@ -1,15 +1,35 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { userLoaded } from '../../store/user/actions';
+
 import AddRecipe from '../add-recipe/AddRecipe';
-import ChangePassword from '../change-password/ChangePassword';
-import EditProfile from '../edit-profile/EditProfile';
 import FoodCategories from '../food-categories/FoodCategories';
-import Login from '../login/Login';
 import Navbar from '../navbar/Navbar';
 import ProfilePage from '../profile-page/ProfilePage';
 import Recipes from '../recipes-list/Recipes';
-import Signup from '../sign-up/Signip';
 import UserRecipes from '../users-recipes/UserRecipes';
+import Signup from '../sign-up/Signup';
 
 const App: React.FC<{}> = () => {
+  const auth = firebase.auth();
+  const [user, loading] = useAuthState(auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(
+        userLoaded({
+          email: user.email,
+          name: user.displayName,
+          photoUrl: user.photoURL,
+        })
+      );
+    }
+  }, [user]);
+
   return (
     <>
       <Navbar />
@@ -17,15 +37,16 @@ const App: React.FC<{}> = () => {
       {/* <FoodCategories />
       <Recipes /> */}
 
-      <ProfilePage />
-
-      {/* <EditProfile /> */}
-
-      {/* <ChangePassword /> */}
+      {/* <ProfilePage /> */}
 
       {/* <AddRecipe /> */}
-      {/* <Login /> */}
-      {/* <Signup /> */}
+      {/* {user ? (
+        <button onClick={() => auth.signOut()} id="sign-out">
+          Sign Out
+        </button>
+      ) : (
+        <Signup />
+      )} */}
     </>
   );
 };
