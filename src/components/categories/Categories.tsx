@@ -7,7 +7,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 import './categories.scss';
 
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Profile from '../profile/Profile';
+import Favorites from '../favorites-list/Favorites';
 
 const categories: ProfileCategory[] = [
   { id: 1, category: 'Profile' },
@@ -18,9 +20,10 @@ const categories: ProfileCategory[] = [
 
 const Categories: React.FC<{}> = () => {
   const auth = firebase.auth();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const [activeCategory, setCategory] = useState(categories[0].category);
+
   const category = 'categories__item';
   const activeCat = category + ' categories__item_active';
 
@@ -29,34 +32,43 @@ const Categories: React.FC<{}> = () => {
   };
 
   return (
-    <div className="categories">
-      <ul className="categories__list">
-        <li className={categoryClass(categories[0].category)}>
-          <Link className="categories__link" to="/recipes">
+    <>
+      <div className="categories">
+        <ul className="categories__list">
+          <li
+            className={categoryClass(categories[0].category)}
+            onClick={() => setCategory(categories[0].category)}
+          >
             {categories[0].category}
-          </Link>
-        </li>
-        <li className={categoryClass(categories[1].category)}>
-          <Link className="categories__link" to="/myrecipes">
+          </li>
+          {/* <li
+            className={categoryClass(categories[1].category)}
+            onClick={() => setCategory(categories[1].category)}
+          >
             {categories[1].category}
-          </Link>
-        </li>
-        <li className={categoryClass(categories[2].category)}>
-          <Link className="categories__link" to="/favorites">
+          </li> */}
+          <li
+            className={categoryClass(categories[2].category)}
+            onClick={() => setCategory(categories[2].category)}
+          >
             {categories[2].category}
-          </Link>
-        </li>
-        <li className={categoryClass(categories[3].category)}>
-          <Link
-            className="categories__link"
-            to="/recipes"
-            onClick={() => auth.signOut()}
+          </li>
+          <li
+            className={categoryClass(categories[3].category)}
+            onClick={() => {
+              auth.signOut();
+            }}
           >
             {categories[3].category}
-          </Link>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+        {!user && <Redirect to="/" />}
+      </div>
+
+      {activeCategory === 'Profile' && <Profile />}
+      {/* {activeCategory === 'My recipes' && <UserRecipes />} */}
+      {activeCategory === 'Favorites' && <Favorites />}
+    </>
   );
 };
 

@@ -12,9 +12,14 @@
   position: relative;
   margin-bottom: 34px;
 
+  &__loading {
+    font-size: 22px;
+    text-align: center;
+  }
+
   &__cover {
-    width: 300px;
-    height: 300px; 
+    width: 150px;
+    height: 150px;
 
     &-img {
       min-width: 100%;
@@ -24,12 +29,8 @@
   &__description {
     display: flex;
     justify-content: space-between;
-    width: calc(50vw - 320px);
+    width: calc(50vw - 170px);
     margin-left: 20px;
-    
-    &-info {
-
-    }
   }
 
   &__name {
@@ -62,7 +63,9 @@
     color: $categoty;
     transition: all 0.3s;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: #dadada;
     }
   }

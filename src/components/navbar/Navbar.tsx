@@ -12,7 +12,7 @@ import Signup from '../sign-up/Signup';
 
 const Navbar: React.FC<{}> = () => {
   const auth = firebase.auth();
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const [showSingIn, setSingIn] = useState(false);
   const [showSearchPannel, setSearch] = useState(false);
@@ -46,10 +46,7 @@ const Navbar: React.FC<{}> = () => {
             </div>
           )}
           <li className="navbar__item">
-            <Link
-              className="navbar__item-link navbar__item-link_active"
-              to="/recipes"
-            >
+            <Link className="navbar__item-link navbar__item-link_active" to="/">
               Recipies
             </Link>
           </li>

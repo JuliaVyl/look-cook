@@ -1,4 +1,4 @@
-import { Recipe } from '../../types';
+import { Recipe } from '../../store/recipes/types';
 import './add-recipe.scss';
 
 interface Props {

@@ -10,7 +10,7 @@
 
   &__cover {
     width: 300px;
-    height: 300px; 
+    height: 300px;
 
     &-img {
       width: 100%;
@@ -39,7 +39,8 @@
     color: $text;
     margin-bottom: 20px;
   }
-  &__time, &__serves {
+  &__time,
+  &__serves {
     margin-bottom: 10px;
   }
 
@@ -51,10 +52,13 @@
     color: text;
     hyphens: auto;
     height: 68px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     line-clamp: 3;
     box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
     margin-bottom: 20px;
   }
 
@@ -71,7 +75,9 @@
     margin-right: 20px;
     transition: all 0.3s;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: #dadada;
     }
   }

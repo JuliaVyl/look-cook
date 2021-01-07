@@ -18,19 +18,6 @@
       opacity: 0.5;
     }
   }
-  &__password {
-    width: 100%;
-    border-radius: 5px;
-    padding-left: 10px;
-    border: 1px solid $categoty;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    color: $categoty;
-    height: 30px;
-    margin-bottom: 20px;
-  }
   &__btn {
     border: none;
     font-family: Montserrat;
@@ -43,7 +30,8 @@
     color: $categoty;
     transition: all 0.3s;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: #dadada;
     }
   }

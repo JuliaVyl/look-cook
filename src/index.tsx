@@ -29,7 +29,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <App />
-        <Route path="/recipes" component={Recipes} />
+        <Route path="/" component={Recipes} exact />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/signin" component={Signup} />
       </Router>
