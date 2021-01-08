@@ -31,11 +31,6 @@ export interface ErrorShowAllFavoritesAction {
   payload: any;
 }
 
-export type ShowAllFavoritesActionTypes =
-  | RequestShowAllFavoritesAction
-  | LoadShowAllFavoritesAction
-  | ErrorShowAllFavoritesAction;
-
 // USER FAVORITE RECIPE
 export const FETCH_FAVORITE_RECIPE_REQUEST = 'FETCH_FAVORITE_RECIPE_REQUEST';
 export const FETCH_FAVORITE_RECIPE_SUCCESS = 'FETCH_FAVORITE_RECIPE_SUCCESS';
@@ -46,17 +41,12 @@ export interface RequestFavoriteRecipeAction {
 }
 export interface AddFavoriteRecipeAction {
   type: typeof FETCH_FAVORITE_RECIPE_SUCCESS;
-  payload: boolean;
+  payload: Favorite;
 }
 export interface ErrorFavoriteRecipeAction {
   type: typeof FETCH_FAVORITE_RECIPE_FAILURE;
   payload: any;
 }
-
-export type FavoriteRecipeActionTypes =
-  | RequestFavoriteRecipeAction
-  | AddFavoriteRecipeAction
-  | ErrorFavoriteRecipeAction;
 
 // USER UNFAVORITE RECIPE
 export const FETCH_UNFAVORITE_RECIPE_REQUEST =
@@ -68,16 +58,24 @@ export const FETCH_UNFAVORITE_RECIPE_FAILURE =
 
 export interface RequestUnfavoriteRecipeAction {
   type: typeof FETCH_UNFAVORITE_RECIPE_REQUEST;
+  payload: string;
 }
 export interface AddUnfavoriteRecipeAction {
   type: typeof FETCH_UNFAVORITE_RECIPE_SUCCESS;
+  payload: boolean;
 }
 export interface ErrorUnfavoriteRecipeAction {
   type: typeof FETCH_UNFAVORITE_RECIPE_FAILURE;
   payload: any;
 }
 
-export type UnfavoriteRecipeActionTypes =
+export type FavoriteRecipeActionTypes =
+  | RequestShowAllFavoritesAction
+  | LoadShowAllFavoritesAction
+  | ErrorShowAllFavoritesAction
+  | RequestFavoriteRecipeAction
+  | AddFavoriteRecipeAction
+  | ErrorFavoriteRecipeAction
   | RequestUnfavoriteRecipeAction
   | AddUnfavoriteRecipeAction
   | ErrorUnfavoriteRecipeAction;

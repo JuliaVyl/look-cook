@@ -11,7 +11,7 @@ const Profile = () => {
   return (
     <div className="profile">
       {loading && <p className="profile__loading">Loading...</p>}
-      {!loading && (
+      {!loading && user && (
         <>
           <div className="profile__cover">
             <img

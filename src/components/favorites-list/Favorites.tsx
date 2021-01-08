@@ -27,7 +27,6 @@ const Favorites: React.FC<{}> = () => {
   const favorites = useSelector(
     (state) => (state as RootState).favorites.favorites
   );
-  console.log(favorites);
 
   let recipes: Recipe[] = [];
 
@@ -47,8 +46,13 @@ const Favorites: React.FC<{}> = () => {
   return (
     <div className="recipes">
       {loading && <p className="recipes__loading">Loading...</p>}
+      {!recipes.length && (
+        <p className="recipes__no-rec" style={{ fontSize: '22px' }}>
+          You have no favorite recipes...
+        </p>
+      )}
       {recipes.map((recipe) => {
-        return <RecipeItem key={recipe.id} recipe={recipe} />;
+        return <RecipeItem key={recipe.id} recipe={recipe} favorite={true} />;
       })}
     </div>
   );

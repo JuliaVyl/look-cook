@@ -1,16 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import firebase from 'firebase/app';
 
 import { store } from './store/store';
 
 import App from './components/app/App';
-import Recipes from './components/recipes-list/Recipes';
-import ProfilePage from './components/profile-page/ProfilePage';
-import Signup from './components/sign-up/Signup';
 
 import './index.css';
 
@@ -27,12 +23,7 @@ firebase.initializeApp({
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <App />
-        <Route path="/" component={Recipes} exact />
-        <Route path="/profile" component={ProfilePage} />
-        <Route path="/signin" component={Signup} />
-      </Router>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

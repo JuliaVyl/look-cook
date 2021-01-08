@@ -1,7 +1,9 @@
 import {
   AddFavoriteRecipeAction,
+  AddUnfavoriteRecipeAction,
   ErrorFavoriteRecipeAction,
   ErrorShowAllFavoritesAction,
+  ErrorUnfavoriteRecipeAction,
   Favorite,
   FETCH_FAVORITE_RECIPE_FAILURE,
   FETCH_FAVORITE_RECIPE_REQUEST,
@@ -9,9 +11,13 @@ import {
   FETCH_SHOW_ALL_FAVORITES_FAILURE,
   FETCH_SHOW_ALL_FAVORITES_REQUEST,
   FETCH_SHOW_ALL_FAVORITES_SUCCESS,
+  FETCH_UNFAVORITE_RECIPE_FAILURE,
+  FETCH_UNFAVORITE_RECIPE_REQUEST,
+  FETCH_UNFAVORITE_RECIPE_SUCCESS,
   LoadShowAllFavoritesAction,
   RequestFavoriteRecipeAction,
   RequestShowAllFavoritesAction,
+  RequestUnfavoriteRecipeAction,
 } from './types';
 
 import { RootState } from '../types';
@@ -70,10 +76,10 @@ export const favoriteRecipeRequested = (): RequestFavoriteRecipeAction => ({
 });
 
 export const favoriteRecipeLoaded = (
-  status: boolean
+  favorite: Favorite
 ): AddFavoriteRecipeAction => ({
   type: FETCH_FAVORITE_RECIPE_SUCCESS,
-  payload: status,
+  payload: favorite,
 });
 
 export const favoriteRecipeError = (error: any): ErrorFavoriteRecipeAction => ({
@@ -90,12 +96,66 @@ export const fetchAddFavorite = (
   dispatch(favoriteRecipeRequested);
   try {
     const db = firebase.firestore();
-    await db.collection('favorites').add({
+    const resp = await db.collection('favorites').add({
       favoriteId: favId,
       user: userId,
     });
-    dispatch(favoriteRecipeLoaded(true));
+    dispatch(
+      favoriteRecipeLoaded({
+        id: resp.id,
+        favoriteId: favId,
+        user: userId,
+      })
+    );
   } catch (e) {
     dispatch(favoriteRecipeError(e));
+  }
+};
+
+// DELETE FAVORITE RECIPE
+
+export const unfavoriteRecipeRequested = (
+  id: string
+): RequestUnfavoriteRecipeAction => ({
+  type: FETCH_UNFAVORITE_RECIPE_REQUEST,
+  payload: id,
+});
+export const unfavoriteRecipeLoaded = (
+  status: boolean
+): AddUnfavoriteRecipeAction => ({
+  type: FETCH_UNFAVORITE_RECIPE_SUCCESS,
+  payload: status,
+});
+export const unfavoriteRecipeError = (
+  error: any
+): ErrorUnfavoriteRecipeAction => ({
+  type: FETCH_UNFAVORITE_RECIPE_FAILURE,
+  payload: error,
+});
+
+export const fetchDeleteFavorite = (
+  id: string,
+  user: string
+): ThunkAction<void, RootState, unknown, Action<string>> => async (
+  dispatch
+) => {
+  dispatch(unfavoriteRecipeRequested(id));
+  try {
+    const db = firebase.firestore();
+    await db
+      .collection('favorites')
+      .where('favoriteId', '==', id)
+      .where('user', '==', user)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, '=>', doc.data());
+          db.collection('favorites').doc(doc.id).delete();
+        });
+      });
+    dispatch(unfavoriteRecipeLoaded(true));
+    dispatch(fetchShowAllFavorites(user));
+  } catch (e) {
+    dispatch(unfavoriteRecipeError(e));
   }
 };

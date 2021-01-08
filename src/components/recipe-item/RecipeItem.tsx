@@ -4,28 +4,36 @@ import favIcon from '../../assets/icons/favorite.svg';
 import addFavIcon from '../../assets/icons/add-favorite.svg';
 
 import { Recipe } from '../../store/recipes/types';
-import { useState } from 'react';
-import { fetchAddFavorite } from '../../store/favorites/actions';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import {
+  fetchAddFavorite,
+  fetchDeleteFavorite,
+  fetchShowAllFavorites,
+} from '../../store/favorites/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { RootState } from '../../store/types';
 
 interface Props {
   recipe: Recipe;
+  favorite: boolean;
 }
 
-const RecipeItem: React.FC<Props> = ({ recipe }) => {
+const RecipeItem: React.FC<Props> = ({ recipe, favorite }) => {
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
 
-  const [favorite, setFavorite] = useState(false);
   const dispatch = useDispatch();
 
   const addFavorite = (id: string): void => {
-    setFavorite(true);
     dispatch(fetchAddFavorite(id, user.email));
+  };
+
+  const removeFavorite = (id: string): void => {
+    dispatch(fetchDeleteFavorite(id, user.email));
   };
 
   return (
@@ -50,7 +58,7 @@ const RecipeItem: React.FC<Props> = ({ recipe }) => {
               className="recipe__favorites-ico"
               src={favIcon}
               alt="favorite"
-              onClick={() => setFavorite(false)}
+              onClick={() => removeFavorite(recipe.id)}
             />
           </div>
         )}

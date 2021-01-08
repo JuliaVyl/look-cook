@@ -20,7 +20,7 @@ const categories: ProfileCategory[] = [
 
 const Categories: React.FC<{}> = () => {
   const auth = firebase.auth();
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
 
   const [activeCategory, setCategory] = useState(categories[0].category);
 
@@ -62,7 +62,7 @@ const Categories: React.FC<{}> = () => {
             {categories[3].category}
           </li>
         </ul>
-        {!user && <Redirect to="/" />}
+        {!user && !loading && <Redirect to="/" />}
       </div>
 
       {activeCategory === 'Profile' && <Profile />}
