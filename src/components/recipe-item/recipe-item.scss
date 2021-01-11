@@ -1,12 +1,8 @@
 @import '../../assets/colors';
+@import '../../assets/mixins';
 
 .recipe {
-  padding: 20px;
-  display: flex;
-  box-shadow: 0px 8px 33px -5px rgba(34, 60, 80, 0.2);
-  width: 50%;
-  position: relative;
-  margin-bottom: 34px;
+  @include container;
 
   &__cover {
     width: 300px;
@@ -64,23 +60,8 @@
   }
 
   &__btn {
-    border: none;
-    font-family: Montserrat;
-    background-color: $bg;
-    height: 46px;
+    @include button;
     width: 200px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    color: $categoty;
-    margin-right: 20px;
-    transition: all 0.3s;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: #dadada;
-    }
   }
 
   &__favorites {
@@ -95,5 +76,12 @@
       height: 100%;
       cursor: pointer;
     }
+  }
+  &__alert {
+    width: 240px;
+    height: 30px;
+    background-color: $bg;
+    padding: 10px;
+    
   }
 }

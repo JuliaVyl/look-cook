@@ -1,10 +1,12 @@
 import './navbar.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/types';
+
+import { Link } from 'react-router-dom';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-
-import { Link } from 'react-router-dom';
 
 import searchIcon from '../../assets/icons/search.svg';
 import { useState } from 'react';
@@ -15,7 +17,6 @@ import { useDispatch } from 'react-redux';
 const Navbar: React.FC<{}> = () => {
   const auth = firebase.auth();
   const [user] = useAuthState(auth);
-
   const [value, setValue] = useState('');
 
   const [showSingIn, setSingIn] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchRecipes } from '../../store/recipes/actions';
@@ -16,8 +16,10 @@ import { fetchShowAllFavorites } from '../../store/favorites/actions';
 
 const Recipes: React.FC<{}> = () => {
   const auth = firebase.auth();
-  const [user, loading] = useAuthState(auth);
-
+  const [,loading] = useAuthState(auth);
+  const user = useSelector(
+    (state) => (state as RootState).user.user
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {

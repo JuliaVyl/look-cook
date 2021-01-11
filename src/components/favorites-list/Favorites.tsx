@@ -14,10 +14,13 @@ import { fetchShowAllFavorites } from '../../store/favorites/actions';
 import { fetchRecipes } from '../../store/recipes/actions';
 import { Recipe } from '../../store/recipes/types';
 
+
 const Favorites: React.FC<{}> = () => {
   const auth = firebase.auth();
-  const [user, loading] = useAuthState(auth);
-
+  const [, loading] = useAuthState(auth);
+  const user = useSelector(
+    (state) => (state as RootState).user.user
+  );
   const dispatch = useDispatch();
 
   const allRecipes = useSelector(
@@ -31,9 +34,11 @@ const Favorites: React.FC<{}> = () => {
   let recipes: Recipe[] = [];
 
   useEffect(() => {
-    dispatch(fetchShowAllFavorites(user.email));
+    if (user) {
+      dispatch(fetchShowAllFavorites(user.email));
+    }
     dispatch(fetchRecipes());
-  }, [dispatch, user.email]);
+  }, [dispatch, user]);
 
   recipes = useMemo(
     () =>

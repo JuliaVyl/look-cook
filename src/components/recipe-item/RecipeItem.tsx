@@ -4,18 +4,16 @@ import favIcon from '../../assets/icons/favorite.svg';
 import addFavIcon from '../../assets/icons/add-favorite.svg';
 
 import { Recipe } from '../../store/recipes/types';
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   fetchAddFavorite,
   fetchDeleteFavorite,
-  fetchShowAllFavorites,
 } from '../../store/favorites/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { RootState } from '../../store/types';
+
+import RecipeItemFull from '../recipe-item-more/RecipeItemFull';
 
 interface Props {
   recipe: Recipe;
@@ -23,18 +21,29 @@ interface Props {
 }
 
 const RecipeItem: React.FC<Props> = ({ recipe, favorite }) => {
-  const auth = firebase.auth();
-  const [user] = useAuthState(auth);
+  const [showFullRecipe, setFullRecipe] = useState(false);
+  const [alert, setAlert] = useState(false);
+  
+  const user = useSelector(
+    (state) => (state as RootState).user.user
+  );
 
   const dispatch = useDispatch();
 
   const addFavorite = (id: string): void => {
-    dispatch(fetchAddFavorite(id, user.email));
+    if (user) dispatch(fetchAddFavorite(id, user.email));
   };
 
   const removeFavorite = (id: string): void => {
-    dispatch(fetchDeleteFavorite(id, user.email));
+    if (user) dispatch(fetchDeleteFavorite(id, user.email));
   };
+  const showRecipe = () => {
+    setFullRecipe(true);
+  }
+  const showAlert = () => {
+    setAlert(true);
+    setTimeout(() => setAlert(false), 4000);
+  }
 
   return (
     <>
@@ -42,7 +51,7 @@ const RecipeItem: React.FC<Props> = ({ recipe, favorite }) => {
         <div className="recipe__cover">
           <img className="recipe__cover-img" src={recipe.image} alt="dish" />
         </div>
-        {!favorite && (
+        {!favorite && user && (
           <div className="recipe__favorites">
             <img
               className="recipe__favorites-ico"
@@ -52,7 +61,18 @@ const RecipeItem: React.FC<Props> = ({ recipe, favorite }) => {
             />
           </div>
         )}
-        {favorite && (
+        {!user && (
+          <div className="recipe__favorites">
+            <img
+              className="recipe__favorites-ico"
+              src={addFavIcon}
+              alt="favorite"
+              onClick={() => showAlert()}
+            />
+            {alert && <p className="recipe__alert">You need to authorize to add favorites</p>}
+          </div>
+        )}
+        {favorite && user && (
           <div className="recipe__favorites">
             <img
               className="recipe__favorites-ico"
@@ -70,8 +90,16 @@ const RecipeItem: React.FC<Props> = ({ recipe, favorite }) => {
             <p className="recipe__level">Level - {recipe.level}</p>
           </div>
           <p className="recipe__text">{recipe.description}</p>
-          <button className="recipe__btn">Show full recipe</button>
+          <button className="recipe__btn" onClick={() => showRecipe()}>
+            Show full recipe
+          </button>
         </div>
+        {showFullRecipe && (
+          <RecipeItemFull
+            recipe={recipe}
+            closeFullRecipe={() => setFullRecipe(false)}
+          />
+        )}
       </div>
     </>
   );

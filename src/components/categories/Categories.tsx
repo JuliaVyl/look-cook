@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { ProfileCategory } from '../../types';
 
 import firebase from 'firebase/app';
@@ -6,6 +8,8 @@ import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import './categories.scss';
+
+import { fetchRecipes } from '../../store/recipes/actions';
 
 import { Redirect } from 'react-router-dom';
 import Profile from '../profile/Profile';
@@ -21,6 +25,12 @@ const categories: ProfileCategory[] = [
 const Categories: React.FC<{}> = () => {
   const auth = firebase.auth();
   const [user, loading] = useAuthState(auth);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user) dispatch(fetchRecipes());
+  }, [user])
 
   const [activeCategory, setCategory] = useState(categories[0].category);
 
@@ -41,12 +51,6 @@ const Categories: React.FC<{}> = () => {
           >
             {categories[0].category}
           </li>
-          {/* <li
-            className={categoryClass(categories[1].category)}
-            onClick={() => setCategory(categories[1].category)}
-          >
-            {categories[1].category}
-          </li> */}
           <li
             className={categoryClass(categories[2].category)}
             onClick={() => setCategory(categories[2].category)}
@@ -66,7 +70,6 @@ const Categories: React.FC<{}> = () => {
       </div>
 
       {activeCategory === 'Profile' && <Profile />}
-      {/* {activeCategory === 'My recipes' && <UserRecipes />} */}
       {activeCategory === 'Favorites' && <Favorites />}
     </>
   );
