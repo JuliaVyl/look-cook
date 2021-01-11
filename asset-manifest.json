@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/look-cook/static/css/main.cb3c8be5.chunk.css",
+    "main.js": "/look-cook/static/js/main.73d7006b.chunk.js",
+    "main.js.map": "/look-cook/static/js/main.73d7006b.chunk.js.map",
+    "runtime-main.js": "/look-cook/static/js/runtime-main.2461087a.js",
+    "runtime-main.js.map": "/look-cook/static/js/runtime-main.2461087a.js.map",
+    "static/js/2.6d91a288.chunk.js": "/look-cook/static/js/2.6d91a288.chunk.js",
+    "static/js/2.6d91a288.chunk.js.map": "/look-cook/static/js/2.6d91a288.chunk.js.map",
+    "static/js/3.78bc80be.chunk.js": "/look-cook/static/js/3.78bc80be.chunk.js",
+    "static/js/3.78bc80be.chunk.js.map": "/look-cook/static/js/3.78bc80be.chunk.js.map",
+    "index.html": "/look-cook/index.html",
+    "static/css/main.cb3c8be5.chunk.css.map": "/look-cook/static/css/main.cb3c8be5.chunk.css.map",
+    "static/js/2.6d91a288.chunk.js.LICENSE.txt": "/look-cook/static/js/2.6d91a288.chunk.js.LICENSE.txt",
+    "static/media/add-favorite.96f1acaa.svg": "/look-cook/static/media/add-favorite.96f1acaa.svg",
+    "static/media/categories.scss": "/look-cook/static/media/category-ellipse.648298b1.svg",
+    "static/media/close.67aa2dae.svg": "/look-cook/static/media/close.67aa2dae.svg",
+    "static/media/favorite.5535092f.svg": "/look-cook/static/media/favorite.5535092f.svg",
+    "static/media/index.css": "/look-cook/static/media/montserrat-v15-latin-regular.fc5bbc5f.woff",
+    "static/media/search.520bbe1d.svg": "/look-cook/static/media/search.520bbe1d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2461087a.js",
+    "static/js/2.6d91a288.chunk.js",
+    "static/css/main.cb3c8be5.chunk.css",
+    "static/js/main.73d7006b.chunk.js"
+  ]
+}
