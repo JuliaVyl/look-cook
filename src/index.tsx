@@ -12,7 +12,7 @@ import './index.css';
 
 // Initialize Firebase
 firebase.initializeApp({
-  apiKey: 'AIzaSyDE30ZK07TH9HnIw8HkvUzw1nP9gEHbyVk',
+  apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
   authDomain: 'look-and-cook-e12b6.firebaseapp.com',
   projectId: 'look-and-cook-e12b6',
   storageBucket: 'look-and-cook-e12b6.appspot.com',

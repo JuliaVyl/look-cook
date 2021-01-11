@@ -1,6 +1,4 @@
 import './navbar.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/types';
 
 import { Link } from 'react-router-dom';
 

@@ -14,6 +14,7 @@ import { fetchRecipes } from '../../store/recipes/actions';
 import { Redirect } from 'react-router-dom';
 import Profile from '../profile/Profile';
 import Favorites from '../favorites-list/Favorites';
+import { userLoaded } from '../../store/user/actions';
 
 const categories: ProfileCategory[] = [
   { id: 1, category: 'Profile' },
@@ -30,7 +31,7 @@ const Categories: React.FC<{}> = () => {
 
   useEffect(() => {
     if (!user) dispatch(fetchRecipes());
-  }, [user])
+  }, [user, dispatch]);
 
   const [activeCategory, setCategory] = useState(categories[0].category);
 
@@ -60,7 +61,7 @@ const Categories: React.FC<{}> = () => {
           <li
             className={categoryClass(categories[3].category)}
             onClick={() => {
-              auth.signOut();
+              auth.signOut().then(() => dispatch(userLoaded(null)));
             }}
           >
             {categories[3].category}
