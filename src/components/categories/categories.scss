@@ -1,0 +1,45 @@
+@import '../../assets/colors';
+
+.categories {
+  position: absolute;
+  right: 0;
+  top: 160px;
+  background: $bg;
+  padding: 70px 0 70px 84px;
+  width: 438px;
+
+  &__list {
+  }
+  &__link {
+    text-decoration: none;
+    color: $categoty;
+  }
+
+  &__item {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: $categoty;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &_active {
+      font-weight: bold;
+      font-size: 20px;
+      color: $accent;
+      padding-left: 20px;
+      background: url(../../assets/icons/category-ellipse.svg) no-repeat 0 7px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import '../../assets/colors';
+.bg-items {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;  
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.full-recipe {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin:auto;
+  left: 352px;
+  right: 352px;
+  top: 50px;
+  max-height: 80%;
+  z-index: 3;
+  background-color: white;
+  border: 1px solid $bg;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 34px;
+    color: $light-text;
+    margin-bottom: 30px;
+  }
+  &__cover {
+    width: 400px;
+    height: 400px;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__about {
+    margin-left: 30px;
+  }
+  &__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    color: $text;
+    margin-bottom: 30px;
+    max-width: 35ch;
+  }
+  &__description { 
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 40px;
+    color: text;
+    hyphens: auto;
+  }
+ 
+}

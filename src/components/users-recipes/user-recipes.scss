@@ -1,0 +1,30 @@
+@import '../../assets/colors';
+
+.recipes {
+  &__text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: $categoty;
+    margin-bottom: 20px;
+  }
+
+  &__btn {
+    border: none;
+    font-family: Montserrat;
+    background-color: $bg;
+    height: 46px;
+    width: 200px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: $categoty;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: #dadada;
+    }
+  }
+}
