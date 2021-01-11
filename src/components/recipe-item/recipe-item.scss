@@ -1,16 +1,12 @@
 @import '../../assets/colors';
+@import '../../assets/mixins';
 
 .recipe {
-  padding: 20px;
-  display: flex;
-  box-shadow: 0px 8px 33px -5px rgba(34, 60, 80, 0.2);
-  width: 50%;
-  position: relative;
-  margin-bottom: 34px;
+  @include container;
 
   &__cover {
     width: 300px;
-    height: 300px; 
+    height: 300px;
 
     &-img {
       width: 100%;
@@ -38,8 +34,10 @@
     line-height: 26px;
     color: $text;
     margin-bottom: 20px;
+    max-width: 35ch;
   }
-  &__time, &__serves {
+  &__time,
+  &__serves {
     margin-bottom: 10px;
   }
 
@@ -51,29 +49,19 @@
     color: text;
     hyphens: auto;
     height: 68px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     line-clamp: 3;
     box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
     margin-bottom: 20px;
   }
 
   &__btn {
-    border: none;
-    font-family: Montserrat;
-    background-color: $bg;
-    height: 46px;
+    @include button;
     width: 200px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    color: $categoty;
-    margin-right: 20px;
-    transition: all 0.3s;
-
-    &:hover, &:focus, &:active {
-      background: #dadada;
-    }
   }
 
   &__favorites {
@@ -88,5 +76,12 @@
       height: 100%;
       cursor: pointer;
     }
+  }
+  &__alert {
+    width: 240px;
+    height: 30px;
+    background-color: $bg;
+    padding: 10px;
+    
   }
 }

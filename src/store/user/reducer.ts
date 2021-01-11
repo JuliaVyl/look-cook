@@ -1,15 +1,7 @@
-import {
-  FETCH_USER_FAILURE,
-  FETCH_USER_REQUEST,
-  FETCH_USER_SUCCESS,
-  UserActionTypes,
-  UserState,
-} from './types';
+import { LOAD_USER, UserActionTypes, UserState } from './types';
 
 const initialState: UserState = {
   user: null,
-  loading: false,
-  error: null,
 };
 
 export const userReducer = (
@@ -17,25 +9,9 @@ export const userReducer = (
   action: UserActionTypes
 ): UserState => {
   switch (action.type) {
-    case FETCH_USER_REQUEST:
-      return {
-        user: null,
-        loading: true,
-        error: null,
-      };
-
-    case FETCH_USER_SUCCESS:
+    case LOAD_USER:
       return {
         user: action.payload,
-        loading: false,
-        error: null,
-      };
-
-    case FETCH_USER_FAILURE:
-      return {
-        user: null,
-        loading: false,
-        error: action.payload,
       };
 
     default:

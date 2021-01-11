@@ -1,0 +1,27 @@
+@import './colors';
+
+@mixin container {
+    padding: 20px;
+    display: flex;
+    box-shadow: 0px 8px 33px -5px rgba(34, 60, 80, 0.2);
+    width: 50%;
+    position: relative;
+    margin-bottom: 34px;
+}
+
+@mixin button {
+  border: none;
+  font-family: Montserrat;
+  background-color: $bg;
+  height: 46px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: $categoty;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: #dadada;
+  }
+}
