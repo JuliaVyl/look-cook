@@ -33,9 +33,9 @@ const App: React.FC<{}> = () => {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/profile" component={ProfilePage} exact />
-          <Route path="/signin" component={Signup} exact />
-          <Route path="/" component={Recipes} exact />
+          <Route path="/look-cook/profile" component={ProfilePage} exact />
+          <Route path="/look-cook/signin" component={Signup} exact />
+          <Route path="/look-cook" component={Recipes} exact />
         </Switch>
       </Router>
     </>

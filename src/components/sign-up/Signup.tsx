@@ -27,7 +27,7 @@ const Signup: React.FC<Props> = ({ closePannel }) => {
       <button className="signup__btn" onClick={signInWithGoogle}>
         Sign In with Google
       </button>
-      {user && <Redirect to="/" />}
+      {user && <Redirect to="/look-cook" />}
     </div>
   );
 };
