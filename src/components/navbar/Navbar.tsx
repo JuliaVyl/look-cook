@@ -64,7 +64,7 @@ const Navbar: React.FC<{}> = () => {
           <li className="navbar__item">
             <Link
               className="navbar__item-link navbar__item-link_active"
-              to="/"
+              to="/look-cook/"
               onClick={() => setSearch(true)}
             >
               Recipies
@@ -72,7 +72,7 @@ const Navbar: React.FC<{}> = () => {
           </li>
           {user && (
             <li className="navbar__item" onClick={() => setSearch(false)}>
-              <Link className="navbar__item-link" to="/profile">
+              <Link className="navbar__item-link" to="/look-cook/profile">
                 Profile
               </Link>
             </li>
@@ -81,7 +81,7 @@ const Navbar: React.FC<{}> = () => {
           {!user && (
             <Link
               className="navbar__item-link"
-              to="/signin"
+              to="/look-cook/signin"
               onClick={() => setSingIn(true)}
             >
               Sign In

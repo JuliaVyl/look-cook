@@ -67,7 +67,7 @@ const Categories: React.FC<{}> = () => {
             {categories[3].category}
           </li>
         </ul>
-        {!user && !loading && <Redirect to="look-cook/" />}
+        {!user && !loading && <Redirect to="/look-cook/" />}
       </div>
 
       {activeCategory === 'Profile' && <Profile />}
